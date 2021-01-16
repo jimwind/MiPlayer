@@ -1,0 +1,3 @@
+-keep class org.fmod.**{*;}
+-keep class com.qk.audiotool.fmod.FmodUtils{*;}
+-keep class com.qk.audiotool.lame.LameUtil{*;}

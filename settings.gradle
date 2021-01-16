@@ -1,0 +1,2 @@
+include ':app', 'audiotool', 'libmpg123'
+rootProject.name = "MiPlayer"

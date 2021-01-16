@@ -1,0 +1,102 @@
+package me.rosuh.libmpg123;
+
+public class MPG123 {
+    static {
+        System.loadLibrary("mpg123");
+    }
+
+    protected static native int init();
+
+    protected static native long openFile(String filename);
+
+    protected static native void delete(long handle);
+
+    protected static native boolean skipFrame(long handle);
+
+    protected static native int seek(long handle, float offsetInSeconds);
+
+    protected static native float getPosition(long handle);
+
+    protected static native int getNumChannels(long handle);
+
+    protected static native int getRate(long handle);
+
+    protected static native float getDuration(long handle);
+
+    protected static native long openStream();
+
+    protected static native void feed(long handle, byte[] buffer, int count);
+
+    protected static native short[] readFrame(long handle);
+
+    protected static native int getSeekFrameOffset(long handle, float position);
+
+    private boolean _streamComplete = false;
+
+    private long _handle = 0;
+
+    public MPG123() {
+        MPG123.init();
+        _handle = openStream();
+    }
+
+    public MPG123(String filename) {
+        MPG123.init();
+        _handle = openFile(filename);
+        _streamComplete = true;
+    }
+
+    public void close() {
+        if (_handle != 0)
+            MPG123.delete(_handle);
+    }
+
+    /**
+     * 返回一帧解码的数据 buffer；如果返回空 buffer 表示解码完成；返回 null 表示错误
+     *
+     * @return decode frame buffer if successfully; return a empty buffer if decode done , error would be a null
+     */
+    public short[] readFrame() {
+        return MPG123.readFrame(_handle);
+    }
+
+    public boolean skipFrame() {
+        return MPG123.skipFrame(_handle);
+    }
+
+    public int seek(float offset) {
+        return MPG123.seek(_handle, offset);
+    }
+
+    public float getPosition() {
+        return MPG123.getPosition(_handle);
+    }
+
+    public int getNumChannels() {
+        return MPG123.getNumChannels(_handle);
+    }
+
+    public int getRate() {
+        return MPG123.getRate(_handle);
+    }
+
+    public float getDuration() {
+        return MPG123.getDuration(_handle);
+    }
+
+    public int getSeekFrameOffset(float position) {
+        return MPG123.getSeekFrameOffset(_handle, position);
+    }
+
+    public void feed(byte[] buffer, int count) {
+        MPG123.feed(_handle, buffer, count);
+    }
+
+    public void completeStream() {
+        _streamComplete = true;
+    }
+
+    public boolean isStreamComplete() {
+        return _streamComplete;
+    }
+}
