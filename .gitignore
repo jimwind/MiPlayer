@@ -7,3 +7,4 @@ build
 .cxx
 local.properties
 *.iml
+libmpg123/src/main/libs/

@@ -24,7 +24,7 @@ void _effect(jboolean j_export, JNIEnv *env, jobject jobj, jobjectArray j_file_p
              jfloatArray j_positions, jfloatArray j_delays, jfloatArray j_milliseconds,
              jstring j_output_file_path, jint j_play_millisecond_offset);
 //播放多个音频文件 com.qk.audiotool.fmod
-extern "C" JNIEXPORT void JNICALL Java_com_qk_audiotool_fmod_FmodUtils_effects
+extern "C" JNIEXPORT void JNICALL Java_me_mi_audiotool_fmod_FmodUtils_effects
         (JNIEnv *env, jobject jobj, jobjectArray j_file_paths,
          jfloatArray j_pitches, jfloatArray j_volumes,
          jfloatArray j_positions, jfloatArray j_delays, jfloatArray j_milliseconds,
@@ -35,7 +35,7 @@ extern "C" JNIEXPORT void JNICALL Java_com_qk_audiotool_fmod_FmodUtils_effects
 }
 
 //保存处理后的文件（多音频）
-extern "C" JNIEXPORT void JNICALL Java_com_qk_audiotool_fmod_FmodUtils_saveEffects
+extern "C" JNIEXPORT void JNICALL Java_me_mi_audiotool_fmod_FmodUtils_saveEffects
         (JNIEnv *env, jobject jobj, jobjectArray j_file_paths, jfloatArray j_pitches,
          jfloatArray j_volumes,
          jfloatArray j_positions, jfloatArray j_delays, jfloatArray j_milliseconds,
@@ -46,13 +46,13 @@ extern "C" JNIEXPORT void JNICALL Java_com_qk_audiotool_fmod_FmodUtils_saveEffec
             j_milliseconds, j_output_file_path, 0);
 }
 //停止播放
-extern "C" JNIEXPORT void JNICALL Java_com_qk_audiotool_fmod_FmodUtils_stop
+extern "C" JNIEXPORT void JNICALL Java_me_mi_audiotool_fmod_FmodUtils_stop
         (JNIEnv *env, jobject jobj) {
     LOGI("jimwind fmod stop %s", "");
     stop = true;
 }
 //判断是否正在播放
-extern "C" JNIEXPORT bool JNICALL Java_com_qk_audiotool_fmod_FmodUtils_isPlaying
+extern "C" JNIEXPORT bool JNICALL Java_me_mi_audiotool_fmod_FmodUtils_isPlaying
         (JNIEnv *env, jobject jobj) {
     return playing;
 }
@@ -286,7 +286,7 @@ jfloatArray asFloatArray(JNIEnv *env, float *buf, int size) {
     return array;
 }
 //播放单个音频文件 在线播放
-extern "C" JNIEXPORT void JNICALL Java_com_qk_audiotool_fmod_FmodUtils_play
+extern "C" JNIEXPORT void JNICALL Java_me_mi_audiotool_fmod_FmodUtils_play
         (JNIEnv *env, jobject jobj, jstring j_url, jfloat j_position) {
     if (playing) {
         stop = true;

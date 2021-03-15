@@ -18,7 +18,7 @@ int rec_audio(jbyte *pArray, jsize size);
 void stop_audio();
 
 extern "C" JNIEXPORT jint JNICALL
-Java_com_qk_audiotool_ffmpeg_FFmpegCmd_run(JNIEnv *env, jclass type, jint cmdLen,
+Java_me_mi_audiotool_ffmpeg_FFmpegCmd_run(JNIEnv *env, jclass type, jint cmdLen,
                                            jobjectArray cmd) {
     //set java vm
     JavaVM *jvm = NULL;
@@ -42,12 +42,12 @@ Java_com_qk_audiotool_ffmpeg_FFmpegCmd_run(JNIEnv *env, jclass type, jint cmdLen
 
 }
 extern "C"
-JNIEXPORT jint JNICALL Java_com_qk_audiotool_ffmpeg_FFmpegCmd_getProgress(JNIEnv *env, jclass type) {
+JNIEXPORT jint JNICALL Java_me_mi_audiotool_ffmpeg_FFmpegCmd_getProgress(JNIEnv *env, jclass type) {
     return get_progress();
 }
 
 #define MAX_AUDIO_FRME_SIZE 48000 * 4
-extern "C" JNIEXPORT void JNICALL Java_com_qk_audiotool_ffmpeg_AudioPlayer_sound
+extern "C" JNIEXPORT void JNICALL Java_me_mi_audiotool_ffmpeg_AudioPlayer_sound
         (JNIEnv *env, jobject jthiz, jstring input_jstr, jstring output_jstr) {
     const char *input_cstr = env->GetStringUTFChars(input_jstr, NULL);
     const char *output_cstr = env->GetStringUTFChars(output_jstr, NULL);
@@ -231,7 +231,7 @@ int getChannelLayout(int channel){
  * @param targetChannels 目标声道数
  * @return
  */
-extern "C" JNIEXPORT jint JNICALL Java_com_qk_audiotool_ffmpeg_AudioPlayer_Resample(JNIEnv *env, jobject jthiz,
+extern "C" JNIEXPORT jint JNICALL Java_me_mi_audiotool_ffmpeg_AudioPlayer_Resample(JNIEnv *env, jobject jthiz,
                         jstring sourcePath, jstring targetPath,
                         jint sourceSampleRate, jint targetSampleRate,
                         jint sourceChannels, jint targetChannels) {

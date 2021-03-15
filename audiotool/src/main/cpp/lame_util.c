@@ -39,7 +39,7 @@ JNIEXPORT void JNICALL Java_com_qk_audiotool_lame_LameUtil_init(
 	lame_init_params(lame);
 }
 
-JNIEXPORT jint JNICALL Java_com_qk_audiotool_lame_LameUtil_encode(
+JNIEXPORT jint JNICALL Java_me_mi_audiotool_lame_LameUtil_encode(
 		JNIEnv *env, jclass cls, jshortArray buffer_l, jshortArray buffer_r,
 		jint samples, jbyteArray mp3buf) {
 	jshort* j_buffer_l = (*env)->GetShortArrayElements(env, buffer_l, NULL);
@@ -59,7 +59,7 @@ JNIEXPORT jint JNICALL Java_com_qk_audiotool_lame_LameUtil_encode(
 	return result;
 }
 
-JNIEXPORT jint JNICALL Java_com_qk_audiotool_lame_LameUtil_flush(
+JNIEXPORT jint JNICALL Java_me_mi_audiotool_lame_LameUtil_flush(
 		JNIEnv *env, jclass cls, jbyteArray mp3buf) {
 	const jsize mp3buf_size = (*env)->GetArrayLength(env, mp3buf);
 	jbyte* j_mp3buf = (*env)->GetByteArrayElements(env, mp3buf, NULL);
@@ -71,7 +71,7 @@ JNIEXPORT jint JNICALL Java_com_qk_audiotool_lame_LameUtil_flush(
 	return result;
 }
 
-JNIEXPORT void JNICALL Java_com_qk_audiotool_lame_LameUtil_close
+JNIEXPORT void JNICALL Java_me_mi_audiotool_lame_LameUtil_close
 (JNIEnv *env, jclass cls) {
 	lame_close(lame);
 	lame = NULL;
@@ -90,7 +90,7 @@ int read_samples(FILE *input_file, short *input) {
 	return nb_read;
 }
 
-JNIEXPORT jint Java_com_qk_audiotool_lame_LameUtil_encodeFile
+JNIEXPORT jint Java_me_mi_audiotool_lame_LameUtil_encodeFile
 (JNIEnv *env, jclass cls, jstring in_source_path, jstring in_target_path) {
 	int status = 0;
 
@@ -187,7 +187,7 @@ JNIEXPORT jint Java_com_qk_audiotool_lame_LameUtil_encodeFile
 	return status;
 }
 
-//JNIEXPORT jint Java_com_qk_audiotool_lame_LameUtil_encodeFile
+//JNIEXPORT jint Java_me_mi_audiotool_lame_LameUtil_encodeFile
 //        (JNIEnv *env, jobject jobj, jstring in_source_path, jstring in_target_path) {
 //    int status = 0;
 //
